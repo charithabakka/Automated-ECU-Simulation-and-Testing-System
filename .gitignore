@@ -1,0 +1,14 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+.env/
+
+# LabVIEW files
+*.vi
+
+# MacOS and Windows system files
+.DS_Store
+Thumbs.db
