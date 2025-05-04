@@ -1,0 +1,39 @@
+In terminal
+sudo apt update
+sudo apt install -y can-utils iproute2
+
+To enable vcan0 bash
+
+sudo modprobe vcan
+sudo ip link add dev vcan0 type vcan
+sudo ip link set up vcan0
+
+To check it bash
+ip link show vcan0
+
+Configure python-can to Use socketcan
+to export an environment variable in your terminal session bash
+export CAN_INTERFACE=vcan0
+
+
+In terminal go to project folder
+
+For venv bash
+
+pip install python-can
+
+python3 -m venv venv
+source venv/bin/activate
+
+in 1st terminal in venv bash  
+python3 simulation/listener.py
+
+in 2nd terminal in venv bash  
+python3 simulation/sensor_simulator.py
+
+in 3rd terminal in venv bash  
+python3 simulation/can_tcp_server.py
+
+
+if any changes made to git repo bash
+git pull origin main
