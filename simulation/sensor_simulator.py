@@ -1,14 +1,15 @@
+import time
 import can
 
-def listen():
+def simulate_speed():
     bus = can.interface.Bus(channel='vcan0', bustype='socketcan')
-    print("Listening on vcan0...")
-    msg = bus.recv(timeout=5)
-    if msg:
-        print(f"Received: ID={hex(msg.arbitration_id)} Data={list(msg.data)}")
-    else:
-        print("Timeout - No message received")
+    msg = can.Message(arbitration_id=0x100, data=[50], is_extended_id=False)
+    try:
+        bus.send(msg)
+        print("✅ Sent: Speed = 50 km/h")
+    except can.CanError:
+        print("❌ Message not sent")
 
 if __name__ == "__main__":
-    listen()
+    simulate_speed()
 
